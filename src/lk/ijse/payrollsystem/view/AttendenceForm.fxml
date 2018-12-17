@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.payrollsystem.controller.AttendenceController">
+   <children>
+      <JFXTabPane layoutX="10.0" layoutY="10.0" prefHeight="510.0" prefWidth="800.0">
+         <tabs>
+            <Tab text="Mark Attendence">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="10.0" layoutY="90.0" prefWidth="780.0" />
+                        <Separator layoutX="400.0" layoutY="14.0" orientation="VERTICAL" prefHeight="70.0" />
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="380.0" spacing="10.0">
+                           <children>
+                              <TextField fx:id="txtInEmpID" prefHeight="25.0" prefWidth="140.0" promptText="Empoyee ID" />
+                              <JFXButton buttonType="RAISED" onAction="#markPresent" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #ccc912;" text="Present" />
+                              <JFXButton buttonType="RAISED" layoutX="160.0" layoutY="10.0" onAction="#markAbsent" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #ccc912;" text="Absent" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="410.0" layoutY="40.0" prefHeight="25.0" prefWidth="380.0" spacing="10.0">
+                           <children>
+                              <TextField fx:id="txtOutEmpID" prefWidth="140.0" promptText="Empoyee ID" />
+                              <JFXButton buttonType="RAISED" onAction="#markOUT" prefWidth="70.0" style="-fx-background-color: #ccc912;" text="Mark OUT" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tblAttendence" layoutX="10.0" layoutY="156.0" onMouseClicked="#selectAttendenceTbl" prefHeight="260.0" prefWidth="780.0">
+                          <columns>
+                            <TableColumn prefWidth="68.0" resizable="false" text="AID" />
+                            <TableColumn prefWidth="75.0" resizable="false" text="EID" />
+                              <TableColumn prefWidth="100.0" resizable="false" text="Employee" />
+                              <TableColumn prefWidth="100.0" resizable="false" text="Date" />
+                              <TableColumn prefWidth="75.0" resizable="false" text="Status" />
+                              <TableColumn prefWidth="100.0" resizable="false" text="IN Time" />
+                              <TableColumn prefWidth="100.0" resizable="false" text="OUT Time" />
+                              <TableColumn resizable="false" text="OT" />
+                              <TableColumn resizable="false" text="No Pay" />
+                          </columns>
+                        </TableView>
+                        <JFXButton buttonType="RAISED" layoutX="720.0" layoutY="424.0" onAction="#removeAttendence" prefWidth="70.0" style="-fx-background-color: #F62459;" text="Remove" textFill="WHITE" />
+                        <HBox layoutX="10.0" layoutY="110.0" prefHeight="25.0" prefWidth="780.0" spacing="10.0">
+                           <children>
+                              <TextField fx:id="txtSearchEid" onKeyReleased="#searchUsingEid" promptText="Employee ID" />
+                              <TextField layoutX="10.0" layoutY="10.0" promptText="Empoyee Name" />
+                              <TextField layoutX="169.0" layoutY="10.0" promptText="Date" />
+                              <TextField layoutX="328.0" layoutY="10.0" promptText="Status" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Attendence Setting">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="10.0" layoutY="90.0" prefWidth="780.0" />
+                        <TableView fx:id="tblAttendenceDetail" layoutX="10.0" layoutY="295.0" prefHeight="155.0" prefWidth="780.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" resizable="false" text="ADID" />
+                            <TableColumn prefWidth="125.0" resizable="false" text="Employee ID" />
+                              <TableColumn prefWidth="151.0" resizable="false" text="Month" />
+                              <TableColumn prefWidth="197.0" resizable="false" text="Year" />
+                              <TableColumn prefWidth="229.0" resizable="false" text="Current Month Leaves" />
+                          </columns>
+                        </TableView>
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="780.0" spacing="10.0">
+                           <children>
+                              <JFXComboBox fx:id="cmbMonth" labelFloat="true" prefHeight="25.0" prefWidth="100.0" promptText="Select Month" />
+                              <JFXTextField fx:id="txtNoOfWorkDays" labelFloat="true" prefWidth="150.0" promptText="No Of Work Days" />
+                              <JFXButton buttonType="RAISED" onAction="#setMonth" style="-fx-background-color: #00b16a;" text="Set Month" textFill="WHITE" />
+                              <JFXTextField fx:id="txtAddYear" labelFloat="true" layoutX="362.0" layoutY="10.0" prefWidth="100.0" promptText="Add Year">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </JFXTextField>
+                              <JFXTextField fx:id="txtNoOfLeaves" labelFloat="true" layoutX="120.0" layoutY="10.0" prefWidth="150.0" promptText="No Of Leaves" />
+                              <JFXButton buttonType="RAISED" layoutX="280.0" layoutY="10.0" onAction="#setYear" style="-fx-background-color: #00b16a;" text="Set Year" textFill="WHITE" />
+                              <JFXButton buttonType="RAISED" onAction="#cancelAdding" style="-fx-background-color: #F62459;" text="Cancel" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></JFXButton>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tblMonth" layoutX="10.0" layoutY="105.0" prefHeight="140.0" prefWidth="405.0">
+                           <columns>
+                              <TableColumn prefWidth="125.0" resizable="false" text="Month" />
+                              <TableColumn prefWidth="125.0" resizable="false" text="Year" />
+                              <TableColumn prefWidth="150.0" resizable="false" text="No of Work Days" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tblYear" layoutX="440.0" layoutY="105.0" prefHeight="140.0" prefWidth="350.0">
+                           <columns>
+                              <TableColumn prefWidth="173.0" resizable="false" text="Year" />
+                              <TableColumn prefWidth="173.0" resizable="false" text="No of Leaves" />
+                           </columns>
+                        </TableView>
+                        <ButtonBar layoutX="586.0" layoutY="252.0" prefHeight="25.0" prefWidth="200.0">
+                          <buttons>
+                              <JFXButton buttonType="RAISED" layoutX="135.0" layoutY="10.0" onAction="#removeYearlyLeaves" prefWidth="70.0" style="-fx-background-color: #F62459;" text="Remove" textFill="WHITE" />
+                          </buttons>
+                        </ButtonBar>
+                        <ButtonBar layoutX="215.0" layoutY="252.0" prefHeight="25.0" prefWidth="200.0">
+                           <buttons>
+                              <JFXButton buttonType="RAISED" layoutX="135.0" layoutY="10.0" onAction="#removeMonthlyWorkDays" prefWidth="70.0" style="-fx-background-color: #F62459;" text="Remove" textFill="WHITE" />
+                           </buttons>
+                        </ButtonBar>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab disable="true" style="-fx-background-color: #6C7A89;" text="Attendence">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
